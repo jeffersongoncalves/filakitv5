@@ -57,6 +57,12 @@ class AppPanelProvider extends PanelProvider
             ])
             ->authMiddleware([
                 Authenticate::class,
-            ]);
+            ])
+            ->unsavedChangesAlerts()
+            ->passwordReset()
+            ->emailVerification()
+            ->profile()
+            ->databaseNotifications()
+            ->databaseNotificationsPolling('30s');
     }
 }

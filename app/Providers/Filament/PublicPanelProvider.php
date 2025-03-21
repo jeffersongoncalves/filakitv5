@@ -47,6 +47,7 @@ class PublicPanelProvider extends PanelProvider
                 DisableBladeIconComponents::class,
                 DispatchServingFilamentEvent::class,
             ])
-            ->topNavigation();
+            ->topNavigation()
+            ->databaseNotifications(false);
     }
 }

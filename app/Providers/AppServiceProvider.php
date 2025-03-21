@@ -5,6 +5,9 @@ namespace App\Providers;
 use App\Providers\Filament\AdminPanelProvider;
 use App\Providers\Filament\AppPanelProvider;
 use App\Providers\Filament\PublicPanelProvider;
+use Filament\Support\Facades\FilamentView;
+use Filament\View\PanelsRenderHook;
+use Illuminate\Contracts\View\View;
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
@@ -25,6 +28,9 @@ class AppServiceProvider extends ServiceProvider
         }
         if (config('filakit.public_panel_enabled', false)) {
             $this->app->register(PublicPanelProvider::class);
+        }
+        if (config('filakit.favicon.enabled')) {
+            FilamentView::registerRenderHook(PanelsRenderHook::HEAD_START, fn (): View => view('components.favicon'));
         }
     }
 

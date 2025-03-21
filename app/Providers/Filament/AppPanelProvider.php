@@ -18,6 +18,7 @@ use Illuminate\Cookie\Middleware\EncryptCookies;
 use Illuminate\Foundation\Http\Middleware\VerifyCsrfToken;
 use Illuminate\Routing\Middleware\SubstituteBindings;
 use Illuminate\Session\Middleware\StartSession;
+use Illuminate\Support\Facades\Vite;
 use Illuminate\View\Middleware\ShareErrorsFromSession;
 
 class AppPanelProvider extends PanelProvider
@@ -32,6 +33,8 @@ class AppPanelProvider extends PanelProvider
             ->colors([
                 'primary' => Color::Green,
             ])
+            ->brandLogo(fn () => Vite::asset('resources/images/logo-filakit.png'))
+            ->brandLogoHeight(fn () => request()->is('app/login') ? '121px' : '50px')
             ->viteTheme('resources/css/filament/public/theme.css')
             ->defaultThemeMode(config('filakit.theme_mode', ThemeMode::Dark))
             ->discoverResources(in: app_path('Filament/App/Resources'), for: 'App\\Filament\\App\\Resources')

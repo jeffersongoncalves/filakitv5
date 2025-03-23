@@ -10,3 +10,6 @@
 /art export-ignore
 CHANGELOG.md export-ignore
 .styleci.yml export-ignore
+README.md export-ignore
+LICENSE.md export-ignore
+pnpm-lock.yaml export-ignore

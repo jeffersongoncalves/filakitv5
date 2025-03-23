@@ -29,28 +29,30 @@ web applications with a ready-to-use multi-panel structure.
 
 ## Installation
 
+Clone the repository
 ``` bash
-# Clone the repository
-laravel new my-app --using=jeffersongoncalves/filakit
+laravel new my-app --using=jeffersongoncalves/filakit --database=mysql
 ```
 
+Install JavaScript dependencies
 ``` bash
-# Install JavaScript dependencies
 pnpm install
 ```
 
+Set up environment
 ``` bash
-# Set up environment
 cp .env.example .env
 php artisan key:generate
+```
 
-# Configure your database in the .env file
+Configure your database in the .env file
 
-# Run migrations
+Run migrations
+``` bash
 php artisan migrate
 ```
+Run the server
 ``` bash
-# Run the server
 php artisan serve
 ```
 

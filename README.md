@@ -38,6 +38,9 @@ Install JavaScript dependencies
 ``` bash
 pnpm install
 ```
+Install Composer dependencies
+``` bash
+composer install
 
 Set up environment
 ``` bash

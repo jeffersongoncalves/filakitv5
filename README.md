@@ -41,7 +41,7 @@ pnpm install
 Install Composer dependencies
 ``` bash
 composer install
-
+```
 Set up environment
 ``` bash
 cp .env.example .env

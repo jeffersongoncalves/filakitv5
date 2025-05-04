@@ -1,9 +1,10 @@
 <?php
 
-namespace App\Filament\Resources\AdminResource\Pages;
+namespace App\Filament\Resources\Admins\Pages;
 
-use App\Filament\Resources\AdminResource;
-use Filament\Actions;
+use App\Filament\Resources\Admins\AdminResource;
+use Filament\Actions\DeleteAction;
+use Filament\Actions\EditAction;
 use Filament\Resources\Pages\ViewRecord;
 
 class ViewAdmin extends ViewRecord
@@ -13,7 +14,8 @@ class ViewAdmin extends ViewRecord
     protected function getHeaderActions(): array
     {
         return [
-            Actions\EditAction::make(),
+            EditAction::make(),
+            DeleteAction::make(),
         ];
     }
 }

@@ -4,11 +4,11 @@
 
 </div>
 
-# FilaKit Start Kit Filament 3.x and Laravel 12.x
+# FilaKit Start Kit Filament 4.x and Laravel 12.x
 
 ## About FilaKit
 
-FilaKit is a robust starter kit built on Laravel 12.x and Filament 3.x, designed to accelerate the development of modern
+FilaKit is a robust starter kit built on Laravel 12.x and Filament 4.x, designed to accelerate the development of modern
 web applications with a ready-to-use multi-panel structure.
 
 ## Features

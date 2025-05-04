@@ -22,7 +22,6 @@ class FilamentServiceProvider extends ServiceProvider
 
     private string $defaultCurrency = 'brl';
 
-    // Ref: https://github.com/filamentphp-br/satis/blob/main/app/Providers/FilamentServiceProvider.php -> boot
     public function boot(): void
     {
         $this->configureActions();
@@ -65,6 +64,11 @@ class FilamentServiceProvider extends ServiceProvider
         Actions\ViewAction::configureUsing(function (Actions\ViewAction $action) {
             return $action->hiddenLabel()
                 ->button();
+        });
+
+        FilamentImpersonate\Actions\Impersonate::configureUsing(function (FilamentImpersonate\Actions\Impersonate $action) {
+            return $action->button()
+                ->hiddenLabel();
         });
     }
 
@@ -155,6 +159,7 @@ class FilamentServiceProvider extends ServiceProvider
                 ->danger()
                 ->send();
         };
+
         Pages\Page::$formActionsAreSticky = true;
     }
 
@@ -180,11 +185,6 @@ class FilamentServiceProvider extends ServiceProvider
 
         Tables\Filters\SelectFilter::configureUsing(function (Tables\Filters\SelectFilter $filter) {
             return $filter->native(false);
-        });
-
-        FilamentImpersonate\Actions\Impersonate::configureUsing(function (FilamentImpersonate\Actions\Impersonate $action) {
-            return $action->button()
-                ->hiddenLabel();
         });
     }
 }

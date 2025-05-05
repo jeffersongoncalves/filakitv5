@@ -1,6 +1,6 @@
 <div class="filament-hidden">
 
-![FilaKit](https://raw.githubusercontent.com/jeffersongoncalves/filakit/master/art/jeffersongoncalves-filakit.png)
+![FilaKit](https://raw.githubusercontent.com/jeffersongoncalves/filakitv4/master/art/jeffersongoncalves-filakitv4.png)
 
 </div>
 

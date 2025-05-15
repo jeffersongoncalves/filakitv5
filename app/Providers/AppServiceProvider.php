@@ -9,6 +9,7 @@ use Filament\Support\Facades\FilamentView;
 use Filament\View\PanelsRenderHook;
 use Illuminate\Contracts\View\View;
 use Illuminate\Support\ServiceProvider;
+
 use function view;
 
 class AppServiceProvider extends ServiceProvider

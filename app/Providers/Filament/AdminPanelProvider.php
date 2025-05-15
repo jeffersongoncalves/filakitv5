@@ -71,11 +71,9 @@ class AdminPanelProvider extends PanelProvider
             ])
             ->plugins([
                 EnvironmentIndicatorPlugin::make()
-                    ->color(fn () => match (app()->environment()) {
-                        'production' => null,
-                        'staging' => Color::Orange,
-                        default => Color::Blue,
-                    })
+                    ->showBadge()
+                    ->showBorder()
+                    ->showGitBranch()
                     ->visible(fn () => config('filakit.show_environment_indicator', false)),
             ])
             ->unsavedChangesAlerts()

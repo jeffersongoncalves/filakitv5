@@ -12,9 +12,9 @@ class AdminInfolist
     public static function configure(Schema $schema): Schema
     {
         return $schema
+            ->columns(1)
             ->components([
                 Section::make()
-                    ->columns()
                     ->schema([
                         TextEntry::make('id'),
                         IconEntry::make('status')
@@ -27,7 +27,6 @@ class AdminInfolist
                     ]),
                 Section::make('INFORMAÇÕES ADICIONAIS')
                     ->description('Informações da data de cadastro/alteração e referência.')
-                    ->columns()
                     ->schema([
                         TextEntry::make('created_at')
                             ->dateTime(),

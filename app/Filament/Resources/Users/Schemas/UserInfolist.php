@@ -2,6 +2,7 @@
 
 namespace App\Filament\Resources\Users\Schemas;
 
+use App\Filament\Schemas\Components\AdditionalInformation;
 use Filament\Infolists\Components\IconEntry;
 use Filament\Infolists\Components\TextEntry;
 use Filament\Schemas\Components\Section;
@@ -23,18 +24,13 @@ class UserInfolist
                         TextEntry::make('name'),
                         TextEntry::make('email')
                             ->copyable()
-                            ->copyMessage('Email copiado com sucesso!')
+                            ->copyMessage('Email copied successfully!')
                             ->copyMessageDuration(1500),
                     ]),
-                Section::make('INFORMAÇÕES ADICIONAIS')
-                    ->description('Informações da data de cadastro/alteração e referência.')
-                    ->columns()
-                    ->schema([
-                        TextEntry::make('created_at')
-                            ->dateTime(),
-                        TextEntry::make('updated_at')
-                            ->dateTime(),
-                    ]),
+                AdditionalInformation::make([
+                    'created_at',
+                    'updated_at',
+                ]),
             ]);
     }
 }

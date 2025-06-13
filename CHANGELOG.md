@@ -2,6 +2,15 @@
 
 All notable changes to this project will be documented in this file.
 
+## 4.0.0-beta1 - 2025-06-10
+
+### What's Changed
+
+* build(deps-dev): bump laravel/sail from 1.43.0 to 1.43.1 in the actions-deps group by @dependabot in https://github.com/jeffersongoncalves/filakitv4/pull/4
+* build(deps): bump the actions-deps group with 2 updates by @dependabot in https://github.com/jeffersongoncalves/filakitv4/pull/6
+
+**Full Changelog**: https://github.com/jeffersongoncalves/filakitv4/compare/4.0.0-alpha8...4.0.0-beta1
+
 ## 4.0.0-alpha8 - 2025-06-02
 
 **Full Changelog**: https://github.com/jeffersongoncalves/filakitv4/compare/4.0.0-alpha7...4.0.0-alpha8

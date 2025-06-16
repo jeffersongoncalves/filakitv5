@@ -21,10 +21,8 @@ class LaravelInstaller
     {
         $this->displayHeader();
 
-        // Initialize the package manager if needed
-        if (! is_dir('node_modules')) {
-            $this->setupPackageManager();
-        }
+        // Initialize the package manager
+        $this->setupPackageManager();
 
         // Install dependencies
         $this->installComposerDependencies();

@@ -2,6 +2,18 @@
 
 All notable changes to this project will be documented in this file.
 
+## v4.0.0-beta4 - 2025-06-16
+
+### What's Changed
+
+* refactor(install): streamline package manager setup by @zdearo in https://github.com/jeffersongoncalves/filakitv4/pull/5
+
+### New Contributors
+
+* @zdearo made their first contribution in https://github.com/jeffersongoncalves/filakitv4/pull/5
+
+**Full Changelog**: https://github.com/jeffersongoncalves/filakitv4/compare/v4.0.0-beta3...v4.0.0-beta4
+
 ## v4.0.0-beta3 - 2025-06-16
 
 **Full Changelog**: https://github.com/jeffersongoncalves/filakitv4/compare/v4.0.0-beta2...v4.0.0-beta3

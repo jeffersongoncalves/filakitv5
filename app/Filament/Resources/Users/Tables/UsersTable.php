@@ -20,13 +20,13 @@ class UsersTable
                     ->trueIcon('heroicon-o-check-badge')
                     ->falseIcon('heroicon-o-x-mark')
                     ->sortable(),
+                TextColumn::make('name')
+                    ->searchable()
+                    ->sortable(),
                 TextColumn::make('email')
                     ->searchable()
                     ->sortable()
                     ->toggleable(),
-                TextColumn::make('name')
-                    ->searchable()
-                    ->sortable(),
                 TextColumn::make('created_at')
                     ->dateTime()
                     ->sortable()

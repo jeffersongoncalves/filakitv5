@@ -2,6 +2,23 @@
 
 All notable changes to this project will be documented in this file.
 
+## v4.0.0-beta14 - 2025-07-08
+
+### What's Changed
+
+* chore: Configure Renovate by @renovate in https://github.com/jeffersongoncalves/filakitv4/pull/11
+* chore(deps): update dependency laravel/pint to v1.23.0 by @renovate in https://github.com/jeffersongoncalves/filakitv4/pull/12
+* chore(deps): update dependency laravel-vite-plugin to v1.3.0 by @renovate in https://github.com/jeffersongoncalves/filakitv4/pull/18
+* chore(deps): update dependency concurrently to v9.2.0 by @renovate in https://github.com/jeffersongoncalves/filakitv4/pull/17
+* chore(deps): update dependency axios to v1.10.0 - autoclosed by @renovate in https://github.com/jeffersongoncalves/filakitv4/pull/16
+* chore(deps): update tailwindcss monorepo to v4.1.11 by @renovate in https://github.com/jeffersongoncalves/filakitv4/pull/15
+
+### New Contributors
+
+* @renovate made their first contribution in https://github.com/jeffersongoncalves/filakitv4/pull/11
+
+**Full Changelog**: https://github.com/jeffersongoncalves/filakitv4/compare/v4.0.0-beta13...v4.0.0-beta14
+
 ## v4.0.0-beta13 - 2025-07-04
 
 **Full Changelog**: https://github.com/jeffersongoncalves/filakitv4/compare/v4.0.0-beta12...v4.0.0-beta13

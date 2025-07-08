@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file.
 
+## v4.0.0-beta15 - 2025-07-08
+
+### What's Changed
+
+* fix(deps): update dependency laravel/framework to v12.20.0 by @renovate in https://github.com/jeffersongoncalves/filakitv4/pull/23
+
+**Full Changelog**: https://github.com/jeffersongoncalves/filakitv4/compare/v4.0.0-beta14...v4.0.0-beta15
+
 ## v4.0.0-beta14 - 2025-07-08
 
 ### What's Changed

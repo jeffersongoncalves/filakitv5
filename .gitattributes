@@ -7,9 +7,9 @@
 *.php diff=php
 
 /.github/workflows/update-changelog.yml export-ignore
-/.github/CONTRIBUTING.yml export-ignore
+/.github/CONTRIBUTING.md export-ignore
 /.github/FUNDING.yml export-ignore
-/.github/SECURITY.yml export-ignore
+/.github/SECURITY.md export-ignore
 /art export-ignore
 CHANGELOG.md export-ignore
 .styleci.yml export-ignore

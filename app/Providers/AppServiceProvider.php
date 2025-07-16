@@ -217,12 +217,6 @@ class AppServiceProvider extends ServiceProvider
             return $column->extraImgAttributes(['loading' => 'lazy']);
         });
 
-        Tables\Columns\TextColumn::configureUsing(function (Tables\Columns\TextColumn $column) {
-            return $column
-                ->limit(50)
-                ->wrap();
-        });
-
         Tables\Filters\SelectFilter::configureUsing(function (Tables\Filters\SelectFilter $filter) {
             return $filter->native(false);
         });

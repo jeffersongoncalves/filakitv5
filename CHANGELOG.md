@@ -2,6 +2,20 @@
 
 All notable changes to this project will be documented in this file.
 
+## v4.0.0-beta16 - 2025-07-16
+
+### What's Changed
+
+* Delete .github/FUNDING.yml by @jeffersongoncalves in https://github.com/jeffersongoncalves/filakitv4/pull/24
+* Update .gitignore by @jeffersongoncalves in https://github.com/jeffersongoncalves/filakitv4/pull/25
+* Delete .rnd by @jeffersongoncalves in https://github.com/jeffersongoncalves/filakitv4/pull/26
+* build(deps-dev): bump vite from 6.3.5 to 7.0.2 in the actions-deps group across 1 directory by @dependabot[bot] in https://github.com/jeffersongoncalves/filakitv4/pull/21
+* build(deps-dev): bump the actions-deps group across 1 directory with 2 updates by @dependabot[bot] in https://github.com/jeffersongoncalves/filakitv4/pull/27
+* Update .gitattributes by @jeffersongoncalves in https://github.com/jeffersongoncalves/filakitv4/pull/28
+* Update AppServiceProvider.php by @jeffersongoncalves in https://github.com/jeffersongoncalves/filakitv4/pull/29
+
+**Full Changelog**: https://github.com/jeffersongoncalves/filakitv4/compare/v4.0.0-beta15...v4.0.0-beta16
+
 ## v4.0.0-beta15 - 2025-07-08
 
 ### What's Changed

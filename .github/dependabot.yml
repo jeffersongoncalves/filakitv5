@@ -8,7 +8,7 @@ updates:
   - package-ecosystem: "github-actions"
     directory: "/"
     schedule:
-      interval: "weekly"
+      interval: "daily"
     groups:
       actions-deps:
         patterns:
@@ -17,10 +17,8 @@ updates:
   # Maintain dependencies for npm
   - package-ecosystem: "npm"
     directory: "/"
-    ignore:
-      - dependency-name: "tailwindcss"
     schedule:
-      interval: "weekly"
+      interval: "daily"
     groups:
       actions-deps:
         patterns:
@@ -30,7 +28,7 @@ updates:
   - package-ecosystem: "composer"
     directory: "/"
     schedule:
-      interval: "weekly"
+      interval: "daily"
     groups:
       actions-deps:
         patterns:

@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file.
 
+## 4.0.0-beta22 - 2025-08-05
+
+### What's Changed
+
+* build(deps): bump filament/filament from 4.0.0-beta21 to 4.0.0-beta22 in the actions-deps group by @dependabot[bot] in https://github.com/jeffersongoncalves/filakitv4/pull/39
+
+**Full Changelog**: https://github.com/jeffersongoncalves/filakitv4/compare/4.0.0-beta21...4.0.0-beta22
+
 ## 4.0.0-beta21 - 2025-08-04
 
 **Full Changelog**: https://github.com/jeffersongoncalves/filakitv4/compare/4.0.0-beta20...4.0.0-beta21

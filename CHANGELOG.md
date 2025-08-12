@@ -2,6 +2,10 @@
 
 All notable changes to this project will be documented in this file.
 
+## 4.0.0-beta25 - 2025-08-11
+
+**Full Changelog**: https://github.com/jeffersongoncalves/filakitv4/compare/4.0.0-beta24...4.0.0-beta25
+
 ## 4.0.0-beta24 - 2025-08-10
 
 **Full Changelog**: https://github.com/jeffersongoncalves/filakitv4/compare/4.0.0-beta23...4.0.0-beta24

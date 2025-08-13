@@ -12,14 +12,14 @@ use Filament\Notifications;
 use Filament\Pages;
 use Filament\Schemas\Schema;
 use Filament\Support\Enums\Width;
-use Illuminate\Database\Eloquent\Model;
-use Illuminate\Support\Facades\Vite;
-use Illuminate\Support\Facades\URL;
 use Filament\Support\Facades\FilamentView;
 use Filament\Support\Icons\Heroicon;
 use Filament\Tables;
 use Filament\View\PanelsRenderHook;
 use Illuminate\Contracts\View\View;
+use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\URL;
+use Illuminate\Support\Facades\Vite;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Validation\ValidationException;
 

@@ -12,6 +12,9 @@ use Filament\Notifications;
 use Filament\Pages;
 use Filament\Schemas\Schema;
 use Filament\Support\Enums\Width;
+use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\Vite;
+use Illuminate\Support\Facades\URL;
 use Filament\Support\Facades\FilamentView;
 use Filament\Support\Icons\Heroicon;
 use Filament\Tables;
@@ -49,6 +52,13 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
+        if (! app()->isLocal()) {
+            URL::forceHttps();
+            Vite::useAggressivePrefetching();
+        }
+
+        Model::automaticallyEagerLoadRelationships();
+
         $this->configureActions();
         $this->configureSchema();
         $this->configureForms();

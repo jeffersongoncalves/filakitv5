@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file.
 
+## 4.0.2 - 2025-08-18
+
+### What's Changed
+
+* feat(profile): integrate filament-edit-profile plugin to enhance user profile management by @jeffersongoncalves in https://github.com/jeffersongoncalves/filakitv4/pull/42
+
+**Full Changelog**: https://github.com/jeffersongoncalves/filakitv4/compare/4.0.1...4.0.2
+
 ## 4.0.1 - 2025-08-15
 
 ### What's Changed

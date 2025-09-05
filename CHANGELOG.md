@@ -2,6 +2,16 @@
 
 All notable changes to this project will be documented in this file.
 
+## 4.0.7 - 2025-09-04
+
+### What's Changed
+
+* build(deps): bump the actions-deps group with 2 updates by @dependabot[bot] in https://github.com/jeffersongoncalves/filakitv4/pull/49
+* build(deps): bump laravel/framework from 12.27.0 to 12.28.0 in the actions-deps group by @dependabot[bot] in https://github.com/jeffersongoncalves/filakitv4/pull/50
+* build(deps): bump the actions-deps group with 2 updates by @dependabot[bot] in https://github.com/jeffersongoncalves/filakitv4/pull/51
+
+**Full Changelog**: https://github.com/jeffersongoncalves/filakitv4/compare/4.0.6...4.0.7
+
 ## 4.0.6 - 2025-09-02
 
 **Full Changelog**: https://github.com/jeffersongoncalves/filakitv4/compare/4.0.5...4.0.6

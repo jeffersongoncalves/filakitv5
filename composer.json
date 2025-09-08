@@ -17,7 +17,7 @@
     "require": {
         "php": "^8.2",
         "achyutn/filament-log-viewer": "^1.2",
-        "filament/filament": "4.0.7",
+        "filament/filament": "4.0.8",
         "jeffersongoncalves/filament-logo": "^2.0",
         "joaopaulolndev/filament-edit-profile": "^2.0",
         "laravel/framework": "^12.0",

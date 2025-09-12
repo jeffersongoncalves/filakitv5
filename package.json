@@ -1,5 +1,5 @@
 {
-    "name" : "@jeffersongoncalves/filakitv4",
+    "name": "@jeffersongoncalves/filakitv4",
     "private": true,
     "type": "module",
     "scripts": {
@@ -9,10 +9,10 @@
     "devDependencies": {
         "@tailwindcss/vite": "^4.1.6",
         "autoprefixer": "^10.4.20",
-        "axios": "^1.11.0",
+        "axios": "^1.12.1",
         "concurrently": "^9.0.1",
         "laravel-vite-plugin": "^2.0.0",
         "tailwindcss": "^4.1.5",
-        "vite": "^7.0.6"
+        "vite": "^7.1.5"
     }
 }

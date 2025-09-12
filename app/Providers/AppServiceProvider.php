@@ -10,7 +10,7 @@ use Filament\Forms;
 use Filament\Infolists;
 use Filament\Notifications;
 use Filament\Pages;
-use Filament\Schemas\Schema;
+use Filament\Schemas;
 use Filament\Support\Enums\Width;
 use Filament\Support\Facades\FilamentView;
 use Filament\Support\Icons\Heroicon;
@@ -111,7 +111,7 @@ class AppServiceProvider extends ServiceProvider
 
     private function configureSchema(): void
     {
-        Schema::configureUsing(function (Schema $schema) {
+        Schemas\Schema::configureUsing(function (Schemas\Schema $schema) {
             return $schema
                 ->defaultCurrency(config('filakit.defaultCurrency'))
                 ->defaultDateDisplayFormat(config('filakit.defaultDateDisplayFormat'))
@@ -197,7 +197,7 @@ class AppServiceProvider extends ServiceProvider
                 ->send();
         };
 
-        Pages\Page::$formActionsAreSticky = true;
+        Pages\Page::$formActionsAreSticky = false;
     }
 
     private function configureTables(): void

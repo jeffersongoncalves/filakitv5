@@ -1,6 +1,6 @@
 {
     "$schema": "https://getcomposer.org/schema.json",
-    "name": "jeffersongoncalves/filakitv4",
+    "name": "jeffersongoncalves/filakitv5",
     "type": "project",
     "description": "The skeleton application for the FilamentPHP.",
     "keywords": [

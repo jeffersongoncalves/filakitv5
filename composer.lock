@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "340522e36f55ee433237b5bffd07ac6f",
+    "content-hash": "d0026ccec939837b9df5d011afea0f2e",
     "packages": [
         {
             "name": "anourvalar/eloquent-serialize",
@@ -2021,16 +2021,16 @@
         },
         {
             "name": "jeffersongoncalves/filament-logo",
-            "version": "3.x-dev",
+            "version": "3.0.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/jeffersongoncalves/filament-logo.git",
-                "reference": "79e28d15bcc81e4eabed6fa7f274e5877a261081"
+                "reference": "1bbd5229d0f5794a7eed332a1f58768f9779d580"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/jeffersongoncalves/filament-logo/zipball/79e28d15bcc81e4eabed6fa7f274e5877a261081",
-                "reference": "79e28d15bcc81e4eabed6fa7f274e5877a261081",
+                "url": "https://api.github.com/repos/jeffersongoncalves/filament-logo/zipball/1bbd5229d0f5794a7eed332a1f58768f9779d580",
+                "reference": "1bbd5229d0f5794a7eed332a1f58768f9779d580",
                 "shasum": ""
             },
             "require": {
@@ -2077,9 +2077,9 @@
             ],
             "support": {
                 "issues": "https://github.com/jeffersongoncalves/filament-logo/issues",
-                "source": "https://github.com/jeffersongoncalves/filament-logo/tree/3.x"
+                "source": "https://github.com/jeffersongoncalves/filament-logo/tree/3.0.0"
             },
-            "time": "2025-11-02T21:10:21+00:00"
+            "time": "2025-11-02T21:09:33+00:00"
         },
         {
             "name": "kirschbaum-development/eloquent-power-joins",
@@ -12213,9 +12213,7 @@
     ],
     "aliases": [],
     "minimum-stability": "dev",
-    "stability-flags": {
-        "jeffersongoncalves/filament-logo": 20
-    },
+    "stability-flags": {},
     "prefer-stable": true,
     "prefer-lowest": false,
     "platform": {

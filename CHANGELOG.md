@@ -2,6 +2,17 @@
 
 All notable changes to this project will be documented in this file.
 
+## 5.0.0-beta6 - 2025-12-05
+
+### What's Changed
+
+* build(deps): bump the actions-deps group with 6 updates by @dependabot[bot] in https://github.com/jeffersongoncalves/filakitv5/pull/14
+* build(deps-dev): bump vite from 7.2.4 to 7.2.6 in the actions-deps group by @dependabot[bot] in https://github.com/jeffersongoncalves/filakitv5/pull/15
+* build(deps): bump the actions-deps group with 2 updates by @dependabot[bot] in https://github.com/jeffersongoncalves/filakitv5/pull/16
+* build(deps-dev): bump laravel/sail from 1.49.0 to 1.50.0 in the actions-deps group by @dependabot[bot] in https://github.com/jeffersongoncalves/filakitv5/pull/17
+
+**Full Changelog**: https://github.com/jeffersongoncalves/filakitv5/compare/5.0.0-beta5...5.0.0-beta6
+
 ## 5.0.0-beta5 - 2025-11-28
 
 ### What's Changed

@@ -2,6 +2,19 @@
 
 All notable changes to this project will be documented in this file.
 
+## 5.0.0-beta5 - 2025-11-28
+
+### What's Changed
+
+* Update branch for git-auto-commit-action by @jeffersongoncalves in https://github.com/jeffersongoncalves/filakitv5/pull/12
+* build(deps): bump actions/checkout from 5 to 6 in the actions-deps group by @dependabot[bot] in https://github.com/jeffersongoncalves/filakitv5/pull/13
+
+### New Contributors
+
+* @jeffersongoncalves made their first contribution in https://github.com/jeffersongoncalves/filakitv5/pull/12
+
+**Full Changelog**: https://github.com/jeffersongoncalves/filakitv5/compare/5.0.0-beta4...5.0.0-beta5
+
 ## 5.0.0-beta4 - 2025-11-20
 
 ### What's Changed

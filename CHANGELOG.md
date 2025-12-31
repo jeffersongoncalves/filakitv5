@@ -2,6 +2,22 @@
 
 All notable changes to this project will be documented in this file.
 
+## 5.0.0-beta8 - 2025-12-30
+
+### What's Changed
+
+* build(deps): bump the actions-deps group with 2 updates by @dependabot[bot] in https://github.com/jeffersongoncalves/filakitv5/pull/20
+* build(deps-dev): bump barryvdh/laravel-ide-helper from 3.6.0 to 3.6.1 in the actions-deps group by @dependabot[bot] in https://github.com/jeffersongoncalves/filakitv5/pull/21
+* build(deps-dev): bump the actions-deps group with 2 updates by @dependabot[bot] in https://github.com/jeffersongoncalves/filakitv5/pull/22
+* build(deps-dev): bump autoprefixer from 10.4.22 to 10.4.23 in the actions-deps group by @dependabot[bot] in https://github.com/jeffersongoncalves/filakitv5/pull/23
+* build(deps-dev): bump vite from 7.2.7 to 7.3.0 in the actions-deps group by @dependabot[bot] in https://github.com/jeffersongoncalves/filakitv5/pull/24
+* build(deps-dev): bump larastan/larastan from 3.8.0 to 3.8.1 in the actions-deps group by @dependabot[bot] in https://github.com/jeffersongoncalves/filakitv5/pull/25
+* build(deps): bump the actions-deps group with 3 updates by @dependabot[bot] in https://github.com/jeffersongoncalves/filakitv5/pull/26
+* build(deps): bump laravel/framework from 12.43.1 to 12.44.0 in the actions-deps group by @dependabot[bot] in https://github.com/jeffersongoncalves/filakitv5/pull/27
+* build(deps-dev): bump barryvdh/laravel-debugbar from 3.16.2 to 3.16.3 in the actions-deps group by @dependabot[bot] in https://github.com/jeffersongoncalves/filakitv5/pull/28
+
+**Full Changelog**: https://github.com/jeffersongoncalves/filakitv5/compare/5.0.0-beta7...5.0.0-beta8
+
 ## 5.0.0-beta7 - 2025-12-09
 
 ### What's Changed

@@ -3289,16 +3289,16 @@
         },
         {
             "name": "livewire/livewire",
-            "version": "v4.0.0-beta.6",
+            "version": "v4.0.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/livewire/livewire.git",
-                "reference": "c7c195c96acf45c449bf33118be6e4edabbd86f7"
+                "reference": "c7539589d5af82691bef17da17ce4e289269f8d9"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/livewire/livewire/zipball/c7c195c96acf45c449bf33118be6e4edabbd86f7",
-                "reference": "c7c195c96acf45c449bf33118be6e4edabbd86f7",
+                "url": "https://api.github.com/repos/livewire/livewire/zipball/c7539589d5af82691bef17da17ce4e289269f8d9",
+                "reference": "c7539589d5af82691bef17da17ce4e289269f8d9",
                 "shasum": ""
             },
             "require": {
@@ -3353,7 +3353,7 @@
             "description": "A front-end framework for Laravel.",
             "support": {
                 "issues": "https://github.com/livewire/livewire/issues",
-                "source": "https://github.com/livewire/livewire/tree/v4.0.0-beta.6"
+                "source": "https://github.com/livewire/livewire/tree/v4.0.1"
             },
             "funding": [
                 {
@@ -3361,7 +3361,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2026-01-08T16:45:48+00:00"
+            "time": "2026-01-14T18:40:41+00:00"
         },
         {
             "name": "masterminds/html5",
@@ -12260,8 +12260,7 @@
     "aliases": [],
     "minimum-stability": "dev",
     "stability-flags": {
-        "filament/filament": 10,
-        "livewire/livewire": 10
+        "filament/filament": 10
     },
     "prefer-stable": true,
     "prefer-lowest": false,

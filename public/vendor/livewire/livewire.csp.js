@@ -21,9 +21,9 @@
     mod
   ));
 
-  // ../alpine/packages/csp/dist/module.cjs.js
+  // node_modules/@alpinejs/csp/dist/module.cjs.js
   var require_module_cjs = __commonJS({
-    "../alpine/packages/csp/dist/module.cjs.js"(exports, module) {
+    "node_modules/@alpinejs/csp/dist/module.cjs.js"(exports, module) {
       var __create2 = Object.create;
       var __defProp2 = Object.defineProperty;
       var __getOwnPropDesc2 = Object.getOwnPropertyDescriptor;
@@ -2944,7 +2944,7 @@ ${expression ? 'Expression: "' + expression + '"\n\n' : ""}`, el);
         get raw() {
           return raw;
         },
-        version: "3.15.3",
+        version: "3.15.4",
         flushAndStopDeferringMutations,
         dontAutoEvaluateFunctions,
         disableEffectScheduling,
@@ -5107,6 +5107,9 @@ ${expression ? 'Expression: "' + expression + '"\n\n' : ""}`, el);
   function deepClone(obj) {
     return JSON.parse(JSON.stringify(obj));
   }
+  function deeplyEqual(a, b) {
+    return JSON.stringify(a) === JSON.stringify(b);
+  }
   function parsePathSegments(path) {
     if (path === "")
       return [];
@@ -5152,6 +5155,79 @@ ${expression ? 'Expression: "' + expression + '"\n\n' : ""}`, el);
     });
     return diffs;
   }
+  function diffAndConsolidate(left, right) {
+    let diffs = {};
+    diffRecursive(left, right, "", diffs, left, right);
+    return diffs;
+  }
+  function diffRecursive(left, right, path, diffs, rootLeft, rootRight) {
+    if (left === right)
+      return { changed: false, consolidated: false };
+    let convertedToObject = false;
+    let hasNonNumericKeys = (arr) => {
+      return isArray(arr) && Object.keys(arr).some((k) => isNaN(parseInt(k)));
+    };
+    if (typeof left !== typeof right || isObject(left) && isArray(right) || isArray(left) && isObject(right)) {
+      if (isArray(left) && left.length === 0 && isObject(right)) {
+        left = {};
+        convertedToObject = true;
+      } else if ((left === void 0 || left === null) && isObject(right)) {
+        left = {};
+        convertedToObject = true;
+      } else {
+        diffs[path] = right;
+        return { changed: true, consolidated: false };
+      }
+    }
+    if (isArray(left) && isArray(right) && hasNonNumericKeys(right)) {
+      if (Object.keys(left).length === 0) {
+        convertedToObject = true;
+      }
+    }
+    if (isPrimitive(left) || isPrimitive(right)) {
+      diffs[path] = right;
+      return { changed: true, consolidated: false };
+    }
+    let leftKeys = Object.keys(left);
+    let rightKeys = Object.keys(right);
+    if (leftKeys.length !== rightKeys.length && !convertedToObject) {
+      if (path === "") {
+        Object.keys(right).forEach((key) => {
+          if (!deeplyEqual(left[key], right[key])) {
+            diffs[key] = right[key];
+          }
+        });
+        return { changed: true, consolidated: true };
+      }
+      diffs[path] = dataGet(rootRight, path);
+      return { changed: true, consolidated: true };
+    }
+    let keysMatch = leftKeys.every((k) => rightKeys.includes(k));
+    if (!keysMatch && !convertedToObject) {
+      if (path !== "") {
+        diffs[path] = dataGet(rootRight, path);
+        return { changed: true, consolidated: true };
+      }
+    }
+    let childDiffs = {};
+    let changedCount = 0;
+    let consolidatedCount = 0;
+    let totalChildren = rightKeys.length;
+    rightKeys.forEach((key) => {
+      let childPath = path === "" ? key : `${path}.${key}`;
+      let result = diffRecursive(left[key], right[key], childPath, childDiffs, rootLeft, rootRight);
+      if (result.changed)
+        changedCount++;
+      if (result.consolidated)
+        consolidatedCount++;
+    });
+    if (path !== "" && totalChildren > 1 && changedCount === totalChildren && consolidatedCount === 0 && !convertedToObject) {
+      diffs[path] = dataGet(rootRight, path);
+      return { changed: true, consolidated: true };
+    }
+    Object.assign(diffs, childDiffs);
+    return { changed: changedCount > 0, consolidated: consolidatedCount > 0 };
+  }
   function extractData(payload) {
     let value = isSynthetic(payload) ? payload[0] : payload;
     let meta = isSynthetic(payload) ? payload[1] : void 0;
@@ -5192,8 +5268,8 @@ ${expression ? 'Expression: "' + expression + '"\n\n' : ""}`, el);
     }
     return null;
   }
-  function getUriPrefix() {
-    return document.querySelector("[data-uri-prefix]")?.getAttribute("data-uri-prefix") ?? window.livewireScriptConfig["uriPrefix"] ?? null;
+  function getModuleUrl() {
+    return document.querySelector("[data-module-url]")?.getAttribute("data-module-url") ?? window.livewireScriptConfig["moduleUrl"] ?? null;
   }
   function getUpdateUri() {
     return document.querySelector("[data-update-uri]")?.getAttribute("data-update-uri") ?? window.livewireScriptConfig["uri"] ?? null;
@@ -6794,7 +6870,15 @@ ${expression ? 'Expression: "' + expression + '"\n\n' : ""}`, el);
       [dump, responseBody] = splitDumpFromContent(responseBody);
       handlers.dump(dump);
     }
-    let responseJson = JSON.parse(responseBody);
+    let responseJson = null;
+    try {
+      responseJson = JSON.parse(responseBody);
+    } catch (e) {
+      console.error(e);
+      handlers.error({ response, responseBody });
+      handlers.finish();
+      return;
+    }
     handlers.success({ response, responseBody, responseJson });
     handlers.finish();
   }
@@ -7196,8 +7280,8 @@ ${expression ? 'Expression: "' + expression + '"\n\n' : ""}`, el);
   on("effect", ({ component, effects }) => {
     let scriptModuleHash = effects.scriptModule;
     if (scriptModuleHash) {
-      let encodedName = component.name.replace(".", "--").replace("::", "---").replace(":", "----");
-      let path = `${getUriPrefix()}/js/${encodedName}.js?v=${scriptModuleHash}`;
+      let encodedName = component.name.replace(/\./g, "--").replace(/::/g, "---").replace(/:/g, "----");
+      let path = `${getModuleUrl()}/js/${encodedName}.js?v=${scriptModuleHash}`;
       pendingComponentAssets.set(component, Alpine.reactive({
         loading: true,
         afterLoaded: []
@@ -7410,6 +7494,7 @@ ${expression ? 'Expression: "' + expression + '"\n\n' : ""}`, el);
     };
     let unwatch = import_alpinejs2.default.watch(getter, callback);
     component.addCleanup(unwatch);
+    return unwatch;
   });
   wireProperty("$effect", (component) => (callback) => {
     let effect = import_alpinejs2.default.effect(callback);
@@ -7532,7 +7617,7 @@ ${expression ? 'Expression: "' + expression + '"\n\n' : ""}`, el);
     mergeQueuedUpdates(diff2) {
       Object.entries(this.queuedUpdates).forEach(([updateKey, updateValue]) => {
         Object.entries(diff2).forEach(([diffKey, diffValue]) => {
-          if (diffKey.startsWith(updateValue)) {
+          if (diffKey.startsWith(updateKey)) {
             delete diff2[diffKey];
           }
         });
@@ -7542,7 +7627,7 @@ ${expression ? 'Expression: "' + expression + '"\n\n' : ""}`, el);
       return diff2;
     }
     getUpdates() {
-      let propertiesDiff = diff(this.canonical, this.ephemeral);
+      let propertiesDiff = diffAndConsolidate(this.canonical, this.ephemeral);
       return this.mergeQueuedUpdates(propertiesDiff);
     }
     applyUpdates(object, updates) {
@@ -9111,7 +9196,7 @@ ${expression ? 'Expression: "' + expression + '"\n\n' : ""}`, el);
   }
   var module_default4 = src_default4;
 
-  // ../alpine/packages/sort/dist/module.esm.js
+  // node_modules/@alpinejs/sort/dist/module.esm.js
   function ownKeys2(object, enumerableOnly) {
     var keys = Object.keys(object);
     if (Object.getOwnPropertySymbols) {
@@ -13486,7 +13571,10 @@ ${expression ? 'Expression: "' + expression + '"\n\n' : ""}`, el);
     function navigateTo(destination, { preserveScroll = false, shouldPushToHistoryState = true }) {
       showProgressBar && showAndStartProgressBar();
       fetchHtmlOrUsePrefetchedHtml(destination, (html, finalDestination) => {
-        fireEventForOtherLibrariesToHookInto("alpine:navigating");
+        let swapCallbacks = [];
+        fireEventForOtherLibrariesToHookInto("alpine:navigating", {
+          onSwap: (callback) => swapCallbacks.push(callback)
+        });
         restoreScroll && storeScrollInformationInHtmlBeforeNavigatingAway();
         cleanupAlpineElementsOnThePageThatArentInsideAPersistedElement();
         updateCurrentPageHtmlInHistoryStateForLaterBackButtonClicks();
@@ -13507,6 +13595,7 @@ ${expression ? 'Expression: "' + expression + '"\n\n' : ""}`, el);
               unPackPersistedPopovers(persistedEl);
             });
             !preserveScroll && restoreScrollPositionOrScrollToTop();
+            swapCallbacks.forEach((callback) => callback());
             afterNewScriptsAreDoneLoading(() => {
               andAfterAllThis(() => {
                 setTimeout(() => {
@@ -13547,7 +13636,10 @@ ${expression ? 'Expression: "' + expression + '"\n\n' : ""}`, el);
         if (prevented)
           return;
         storeScrollInformationInHtmlBeforeNavigatingAway();
-        fireEventForOtherLibrariesToHookInto("alpine:navigating");
+        let swapCallbacks = [];
+        fireEventForOtherLibrariesToHookInto("alpine:navigating", {
+          onSwap: (callback) => swapCallbacks.push(callback)
+        });
         updateCurrentPageHtmlInSnapshotCacheForLaterBackButtonClicks(currentPageUrl, currentPageKey);
         preventAlpineFromPickingUpDomChanges(Alpine24, (andAfterAllThis) => {
           enablePersist && storePersistantElementsForLater((persistedEl) => {
@@ -13562,6 +13654,7 @@ ${expression ? 'Expression: "' + expression + '"\n\n' : ""}`, el);
               unPackPersistedPopovers(persistedEl);
             });
             restoreScrollPositionOrScrollToTop();
+            swapCallbacks.forEach((callback) => callback());
             andAfterAllThis(() => {
               autofocus && autofocusElementsWithTheAutofocusAttribute();
               nowInitializeAlpineOnTheNewPage(Alpine24);
@@ -13665,7 +13758,7 @@ ${expression ? 'Expression: "' + expression + '"\n\n' : ""}`, el);
     let isInitiallyPresentInUrl = has(url, name);
     let initialValue = isInitiallyPresentInUrl ? get(url, name) : initialSeedValue;
     let initialValueMemo = JSON.stringify(initialValue);
-    let exceptValueMemo = [false, null, void 0].includes(except) ? initialSeedValue : JSON.stringify(except);
+    let exceptValueMemo = JSON.stringify(except);
     let hasReturnedToInitialValue = (newValue) => JSON.stringify(newValue) === initialValueMemo;
     let hasReturnedToExceptValue = (newValue) => JSON.stringify(newValue) === exceptValueMemo;
     if (alwaysShow)
@@ -13812,7 +13905,7 @@ ${expression ? 'Expression: "' + expression + '"\n\n' : ""}`, el);
     return data;
   }
 
-  // ../alpine/packages/morph/dist/module.esm.js
+  // node_modules/@alpinejs/morph/dist/module.esm.js
   function morph(from, toHtml, options) {
     monkeyPatchDomSetAttributeToAllowAtSymbols();
     let context = createMorphContext(options);
@@ -14676,6 +14769,9 @@ ${expression ? 'Expression: "' + expression + '"\n\n' : ""}`, el);
       return callback();
     if (!fromEl.querySelector("[wire\\:transition]") && !toEl.querySelector("[wire\\:transition]"))
       return callback();
+    if (typeof document.startViewTransition !== "function") {
+      return callback();
+    }
     let style = document.createElement("style");
     style.textContent = `
         @media (prefers-reduced-motion: reduce) {
@@ -14701,11 +14797,19 @@ ${expression ? 'Expression: "' + expression + '"\n\n' : ""}`, el);
     if (options.type) {
       transitionConfig.types = [options.type];
     }
-    let transition = document.startViewTransition(transitionConfig);
-    transition.finished.finally(() => {
-      style.remove();
-    });
-    await transition.updateCallbackDone;
+    try {
+      let transition = document.startViewTransition(transitionConfig);
+      transition.finished.finally(() => {
+        style.remove();
+      });
+      await transition.updateCallbackDone;
+    } catch (e) {
+      let transition = document.startViewTransition(() => callback());
+      transition.finished.finally(() => {
+        style.remove();
+      });
+      await transition.updateCallbackDone;
+    }
   }
 
   // js/morph.js
@@ -15103,7 +15207,7 @@ ${expression ? 'Expression: "' + expression + '"\n\n' : ""}`, el);
       let component = findComponent(id);
       let targetEl = null;
       if (type === "directive") {
-        replaceEl = component.el.querySelector(`[wire\\:stream.replace="${name}"]`);
+        const replaceEl = component.el.querySelector(`[wire\\:stream\\.replace="${name}"]`);
         if (replaceEl) {
           targetEl = replaceEl;
           mode = "replace";
@@ -15503,6 +15607,36 @@ ${expression ? 'Expression: "' + expression + '"\n\n' : ""}`, el);
       }
     }
   });
+
+  // js/features/supportCssModules.js
+  var loadedStyles = /* @__PURE__ */ new Set();
+  on("effect", ({ component, effects }) => {
+    if (effects.styleModule) {
+      let encodedName = component.name.replace(/\./g, "--").replace(/::/g, "---").replace(/:/g, "----");
+      let path = `${getModuleUrl()}/css/${encodedName}.css?v=${effects.styleModule}`;
+      if (!loadedStyles.has(path)) {
+        loadedStyles.add(path);
+        injectStylesheet(path);
+      }
+    }
+    if (effects.globalStyleModule) {
+      let encodedName = component.name.replace(/\./g, "--").replace(/::/g, "---").replace(/:/g, "----");
+      let path = `${getModuleUrl()}/css/${encodedName}.global.css?v=${effects.globalStyleModule}`;
+      if (!loadedStyles.has(path)) {
+        loadedStyles.add(path);
+        injectStylesheet(path);
+      }
+    }
+  });
+  function injectStylesheet(href) {
+    let link = document.createElement("link");
+    link.rel = "stylesheet";
+    link.href = href;
+    let nonce2 = getNonce();
+    if (nonce2)
+      link.nonce = nonce2;
+    document.head.appendChild(link);
+  }
 
   // js/debounce.js
   var callbacksByComponent = new WeakBag();

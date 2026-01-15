@@ -1,5 +1,5 @@
 name: filakitv5
-php: '8.4'
+php: '8.2'
 secured: true
 aliases: {  }
 services: {  }

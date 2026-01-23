@@ -2,6 +2,23 @@
 
 All notable changes to this project will be documented in this file.
 
+## 5.1.0 - 2026-01-23
+
+### What's Changed
+
+* build(deps-dev): bump larastan/larastan from 3.8.1 to 3.9.0 in the actions-deps group by @dependabot[bot] in https://github.com/jeffersongoncalves/filakitv5/pull/38
+* Add achyutn/filament-log-viewer to dependencies by @achyutkneupane in https://github.com/jeffersongoncalves/filakitv5/pull/39
+* build(deps-dev): bump laravel-vite-plugin from 2.0.1 to 2.1.0 in the actions-deps group by @dependabot[bot] in https://github.com/jeffersongoncalves/filakitv5/pull/40
+* build(deps): bump laravel/framework from 12.47.0 to 12.48.1 in the actions-deps group by @dependabot[bot] in https://github.com/jeffersongoncalves/filakitv5/pull/41
+* build(deps): bump the actions-deps group with 2 updates by @dependabot[bot] in https://github.com/jeffersongoncalves/filakitv5/pull/42
+* build(deps): bump livewire/livewire from 4.0.2 to 4.0.3 in the actions-deps group by @dependabot[bot] in https://github.com/jeffersongoncalves/filakitv5/pull/43
+
+### New Contributors
+
+* @achyutkneupane made their first contribution in https://github.com/jeffersongoncalves/filakitv5/pull/39
+
+**Full Changelog**: https://github.com/jeffersongoncalves/filakitv5/compare/5.0.0...5.1.0
+
 ## 5.0.0-beta9 - 2026-01-09
 
 ### What's Changed

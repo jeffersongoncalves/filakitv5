@@ -2,6 +2,17 @@
 
 All notable changes to this project will be documented in this file.
 
+## 5.1.1 - 2026-01-27
+
+### What's Changed
+
+* Add Filament Edit Profile plugin and update dependencies by @jeffersongoncalves in https://github.com/jeffersongoncalves/filakitv5/pull/44
+* build(deps-dev): bump axios from 1.13.2 to 1.13.3 in the actions-deps group by @dependabot[bot] in https://github.com/jeffersongoncalves/filakitv5/pull/45
+* build(deps-dev): bump barryvdh/laravel-debugbar from 3.16.3 to 4.0.2 in the actions-deps group by @dependabot[bot] in https://github.com/jeffersongoncalves/filakitv5/pull/46
+* build(deps): bump the actions-deps group with 2 updates by @dependabot[bot] in https://github.com/jeffersongoncalves/filakitv5/pull/47
+
+**Full Changelog**: https://github.com/jeffersongoncalves/filakitv5/compare/5.1.0...5.1.1
+
 ## 5.1.0 - 2026-01-23
 
 ### What's Changed

@@ -3582,16 +3582,16 @@
         },
         {
             "name": "livewire/livewire",
-            "version": "v4.0.3",
+            "version": "v4.1.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/livewire/livewire.git",
-                "reference": "11afe7b36dbb1d98e073551c217f87b2b6911f81"
+                "reference": "4ae4ee18448f8e9d97b68c8c091b2b597f852a6f"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/livewire/livewire/zipball/11afe7b36dbb1d98e073551c217f87b2b6911f81",
-                "reference": "11afe7b36dbb1d98e073551c217f87b2b6911f81",
+                "url": "https://api.github.com/repos/livewire/livewire/zipball/4ae4ee18448f8e9d97b68c8c091b2b597f852a6f",
+                "reference": "4ae4ee18448f8e9d97b68c8c091b2b597f852a6f",
                 "shasum": ""
             },
             "require": {
@@ -3646,7 +3646,7 @@
             "description": "A front-end framework for Laravel.",
             "support": {
                 "issues": "https://github.com/livewire/livewire/issues",
-                "source": "https://github.com/livewire/livewire/tree/v4.0.3"
+                "source": "https://github.com/livewire/livewire/tree/v4.1.0"
             },
             "funding": [
                 {
@@ -3654,7 +3654,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2026-01-23T06:13:46+00:00"
+            "time": "2026-01-27T02:21:37+00:00"
         },
         {
             "name": "masterminds/html5",
@@ -8682,16 +8682,16 @@
     "packages-dev": [
         {
             "name": "barryvdh/laravel-debugbar",
-            "version": "v4.0.2",
+            "version": "v4.0.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/fruitcake/laravel-debugbar.git",
-                "reference": "be66b2f9ac43caf894105ccb573bf90bc438d0ee"
+                "reference": "9eec3770a304c52d1dd71577b44bbb9ab904f5d8"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/fruitcake/laravel-debugbar/zipball/be66b2f9ac43caf894105ccb573bf90bc438d0ee",
-                "reference": "be66b2f9ac43caf894105ccb573bf90bc438d0ee",
+                "url": "https://api.github.com/repos/fruitcake/laravel-debugbar/zipball/9eec3770a304c52d1dd71577b44bbb9ab904f5d8",
+                "reference": "9eec3770a304c52d1dd71577b44bbb9ab904f5d8",
                 "shasum": ""
             },
             "require": {
@@ -8765,7 +8765,7 @@
             ],
             "support": {
                 "issues": "https://github.com/fruitcake/laravel-debugbar/issues",
-                "source": "https://github.com/fruitcake/laravel-debugbar/tree/v4.0.2"
+                "source": "https://github.com/fruitcake/laravel-debugbar/tree/v4.0.3"
             },
             "funding": [
                 {
@@ -8777,7 +8777,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2026-01-24T19:58:27+00:00"
+            "time": "2026-01-26T18:25:58+00:00"
         },
         {
             "name": "barryvdh/laravel-ide-helper",

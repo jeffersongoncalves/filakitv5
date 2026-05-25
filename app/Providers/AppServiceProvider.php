@@ -11,6 +11,7 @@ use Filament\Infolists;
 use Filament\Notifications;
 use Filament\Pages;
 use Filament\Schemas;
+use Filament\Support\Colors\Color;
 use Filament\Support\Enums\Width;
 use Filament\Support\Facades\FilamentView;
 use Filament\Support\Icons\Heroicon;
@@ -23,6 +24,7 @@ use Illuminate\Support\Facades\Vite;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Validation\ValidationException;
 
+use STS\FilamentImpersonate\Actions\Impersonate;
 use function view;
 
 class AppServiceProvider extends ServiceProvider
@@ -104,6 +106,13 @@ class AppServiceProvider extends ServiceProvider
         Actions\ViewAction::configureUsing(function (Actions\ViewAction $action) {
             return $action
                 ->icon(Heroicon::Eye)
+                ->hiddenLabel()
+                ->button();
+        });
+
+        Impersonate::configureUsing(function (Impersonate $action) {
+            return $action
+                ->color(Color::Blue)
                 ->hiddenLabel()
                 ->button();
         });

@@ -8,6 +8,7 @@ use Filament\Actions\ViewAction;
 use Filament\Tables\Columns\IconColumn;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Table;
+use STS\FilamentImpersonate\Actions\Impersonate;
 
 class UsersTable
 {
@@ -40,6 +41,9 @@ class UsersTable
                 //
             ])
             ->recordActions([
+                Impersonate::make()
+                    ->guard('web')
+                    ->redirectTo('/app'),
                 ViewAction::make(),
                 EditAction::make(),
                 DeleteAction::make(),

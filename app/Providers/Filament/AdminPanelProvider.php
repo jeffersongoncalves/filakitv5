@@ -4,6 +4,8 @@ namespace App\Providers\Filament;
 
 use AchyutN\FilamentLogViewer\FilamentLogViewer;
 use App\Filament\Admin\Pages\Auth\Login;
+use App\Models\Admin;
+use DutchCodingCompany\FilamentDeveloperLogins\FilamentDeveloperLoginsPlugin;
 use Filament\Actions\Action;
 use Filament\Enums\ThemeMode;
 use Filament\Http\Middleware\Authenticate;
@@ -73,6 +75,10 @@ class AdminPanelProvider extends PanelProvider
                 __('Settings'),
             ])
             ->plugins([
+                FilamentDeveloperLoginsPlugin::make()
+                    ->enabled(fn () => app()->environment('local'))
+                    ->modelClass(Admin::class)
+                    ->users(fn () => Admin::query()->where('status', true)->pluck('email', 'name')->toArray()),
                 FilamentLogViewer::make()
                     ->navigationGroup(__('Settings')),
                 FilamentEditProfilePlugin::make()

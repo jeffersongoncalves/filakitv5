@@ -237,6 +237,47 @@ Quick access
 Reference
 - Plugin repository: https://github.com/joaopaulolndev/filament-edit-profile
 
+## Impersonation — stechstudio/filament-impersonate
+
+This project ships with `stechstudio/filament-impersonate` wired so administrators can impersonate application users from the Admin panel only.
+
+How it is wired in this kit
+- Admin → User direction only. The `App\Models\Admin` model returns `canImpersonate(): true` and `App\Models\User` returns `canImpersonate(): false`, so only admins can trigger impersonation.
+- Action available on the Admin `UserResource`:
+  - Table row action in `app/Filament/Admin/Resources/Users/Tables/UsersTable.php`
+  - Header action on `app/Filament/Admin/Resources/Users/Pages/EditUser.php` and `ViewUser.php`
+- Every action is configured with `->guard('web')->redirectTo('/app')` so the impersonated user is logged into the App panel under the `web` guard.
+- Global action defaults (color, icon-only button) are applied once in `app/Providers/AppServiceProvider.php` via `Impersonate::configureUsing(...)`.
+
+Restricting who can be impersonated
+- Add a `canBeImpersonated(): bool` method on `App\Models\User` if you need to exclude specific records (e.g. block staff accounts). When the method is absent, every user is impersonable.
+
+Leaving impersonation
+- A banner is automatically rendered on Filament pages while impersonating. Click "Leave impersonation" to return to the Admin session.
+- For non-Filament Blade layouts, add `<x-impersonate::banner/>` right before `</body>` so the banner stays visible outside Filament.
+
+Optional ENV configuration
+- `FILAMENT_IMPERSONATE_REDIRECT` — global fallback redirect (this kit overrides per action with `/app`).
+- `FILAMENT_IMPERSONATE_ALLOW_SOFT_DELETED` — set to `true` to allow impersonating soft-deleted users.
+- `FILAMENT_IMPERSONATE_BANNER_STYLE` — `dark` (default), `light`, or `auto`.
+- `FILAMENT_IMPERSONATE_BANNER_POSITION` — `top` (default) or `bottom`.
+
+Reference
+- Plugin repository: https://github.com/stechstudio/filament-impersonate
+
+## Developer Logins — dutchcodingcompany/filament-developer-logins
+
+Quick-login buttons are enabled on the Admin and App panels for local development. The list is built dynamically from the database, restricted to active records (`status = true`).
+
+- Admin panel (`app/Providers/Filament/AdminPanelProvider.php`): pulls from `App\Models\Admin`.
+- App panel (`app/Providers/Filament/AppPanelProvider.php`): pulls from `App\Models\User`.
+- Both panels are gated by `app()->environment('local')`, so the buttons never appear in staging/production.
+
+To change the column shown on the buttons, edit the `->users(...)` closure in each provider (for example, swap `pluck('email', 'name')` for `pluck('email', 'email')`).
+
+Reference
+- Plugin repository: https://github.com/DutchCodingCompany/filament-developer-logins
+
 ## Resources
 
 FilaKit includes support for:

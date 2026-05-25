@@ -23,8 +23,8 @@ use Illuminate\Support\Facades\URL;
 use Illuminate\Support\Facades\Vite;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Validation\ValidationException;
-
 use STS\FilamentImpersonate\Actions\Impersonate;
+
 use function view;
 
 class AppServiceProvider extends ServiceProvider

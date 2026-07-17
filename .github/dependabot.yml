@@ -27,6 +27,9 @@ updates:
   # Maintain dependencies for Composer
   - package-ecosystem: "composer"
     directory: "/"
+    ignore:
+      - dependency-name: "filament/filament"
+        update-types: ["version-update:semver-major"]
     schedule:
       interval: "weekly"
     groups:

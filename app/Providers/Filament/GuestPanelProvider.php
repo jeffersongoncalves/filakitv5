@@ -17,6 +17,7 @@ use Illuminate\Routing\Middleware\SubstituteBindings;
 use Illuminate\Session\Middleware\StartSession;
 use Illuminate\Support\Facades\Vite;
 use Illuminate\View\Middleware\ShareErrorsFromSession;
+use JeffersonGoncalves\Filament\Pwa\FilamentPwaPlugin;
 
 class GuestPanelProvider extends PanelProvider
 {
@@ -28,7 +29,7 @@ class GuestPanelProvider extends PanelProvider
             ->colors([
                 'primary' => Color::Gray,
             ])
-            ->brandLogo(fn () => Vite::asset(config('filakit.favicon.logo')))
+            ->brandLogo(fn () => Vite::asset(config('filakit.logo')))
             ->brandLogoHeight('50px')
             ->viteTheme('resources/css/filament/guest/theme.css')
             ->defaultThemeMode(config('filakit.theme_mode', ThemeMode::Dark))
@@ -52,7 +53,7 @@ class GuestPanelProvider extends PanelProvider
                 DispatchServingFilamentEvent::class,
             ])
             ->plugins([
-                //
+                FilamentPwaPlugin::make(),
             ])
             ->userMenu(false)
             ->topNavigation()

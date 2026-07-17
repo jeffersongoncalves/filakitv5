@@ -24,6 +24,7 @@ use Illuminate\Routing\Middleware\SubstituteBindings;
 use Illuminate\Session\Middleware\StartSession;
 use Illuminate\Support\Facades\Vite;
 use Illuminate\View\Middleware\ShareErrorsFromSession;
+use JeffersonGoncalves\Filament\Pwa\FilamentPwaPlugin;
 use Joaopaulolndev\FilamentEditProfile\FilamentEditProfilePlugin;
 use Joaopaulolndev\FilamentEditProfile\Pages\EditProfilePage;
 
@@ -40,7 +41,7 @@ class AdminPanelProvider extends PanelProvider
             ->colors([
                 'primary' => Color::Amber,
             ])
-            ->brandLogo(fn () => Vite::asset(config('filakit.favicon.logo')))
+            ->brandLogo(fn () => Vite::asset(config('filakit.logo')))
             ->brandLogoHeight(fn () => request()->is('admin/login', 'admin/password-reset/*') ? '121px' : '50px')
             ->viteTheme('resources/css/filament/admin/theme.css')
             ->defaultThemeMode(config('filakit.theme_mode', ThemeMode::Dark))
@@ -75,6 +76,7 @@ class AdminPanelProvider extends PanelProvider
                 __('Settings'),
             ])
             ->plugins([
+                FilamentPwaPlugin::make(),
                 FilamentDeveloperLoginsPlugin::make()
                     ->enabled(fn () => app()->environment('local'))
                     ->modelClass(Admin::class)

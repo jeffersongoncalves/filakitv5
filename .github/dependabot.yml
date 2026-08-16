@@ -9,6 +9,8 @@ updates:
     directory: "/"
     schedule:
       interval: "weekly"
+    cooldown:
+      default-days: 3
     groups:
       actions-deps:
         patterns:
@@ -22,6 +24,8 @@ updates:
         update-types: ["version-update:semver-major"]
     schedule:
       interval: "weekly"
+    cooldown:
+      default-days: 3
     groups:
       actions-deps:
         patterns:
@@ -35,6 +39,8 @@ updates:
         update-types: ["version-update:semver-major"]
     schedule:
       interval: "weekly"
+    cooldown:
+      default-days: 3
     groups:
       actions-deps:
         patterns:

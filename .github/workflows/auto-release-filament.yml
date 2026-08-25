@@ -66,6 +66,7 @@ jobs:
           gh release create "${{ steps.current.outputs.version }}" \
             --target main \
             --title "${{ steps.current.outputs.version }}" \
-            --notes "Bump Filament to v${{ steps.current.outputs.version }}"
+            --notes "Bump Filament to v${{ steps.current.outputs.version }}" \
+            --generate-notes
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

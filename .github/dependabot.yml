@@ -1,6 +1,7 @@
 # Standard Dependabot config (dependabot-std).
 # Weekly, grouped, 7-day cooldown (time to catch a malicious release).
-# Filament majors are ignored so no branch ever gets a cross-major bump: main = Filament 5.
+# Framework majors are ignored so no branch ever gets a cross-major bump: main = Filament 5.
+# Explicit `versions` ranges, not `update-types`: without a composer.lock Dependabot skips update-types.
 
 version: 2
 
@@ -25,8 +26,20 @@ updates:
       default-days: 7
     ignore:
       - dependency-name: filament/*
-        update-types:
-          - version-update:semver-major
+        versions:
+          - '>=6.0'
+      - dependency-name: jeffersongoncalves/filament-additional-information
+        versions:
+          - '>=4.0'
+      - dependency-name: jeffersongoncalves/filament-logo
+        versions:
+          - '>=4.0'
+      - dependency-name: jeffersongoncalves/filament-pwa
+        versions:
+          - '>=4.0'
+      - dependency-name: jeffersongoncalves/filament-sensible-defaults
+        versions:
+          - '>=4.0'
     groups:
       composer-deps:
         patterns:
@@ -40,8 +53,8 @@ updates:
       default-days: 7
     ignore:
       - dependency-name: tailwindcss
-        update-types:
-          - version-update:semver-major
+        versions:
+          - '>=5.0'
     groups:
       npm-deps:
         patterns:

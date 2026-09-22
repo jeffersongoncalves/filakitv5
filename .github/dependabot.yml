@@ -1,47 +1,48 @@
-# Basic set up for three package managers
+# Standard Dependabot config (dependabot-std).
+# Weekly, grouped, 7-day cooldown (time to catch a malicious release).
+# Filament majors are ignored so no branch ever gets a cross-major bump: main = Filament 5.
 
 version: 2
 
 updates:
 
-  # Maintain dependencies for GitHub Actions
-  - package-ecosystem: "github-actions"
-    directory: "/"
+  - package-ecosystem: github-actions
+    directory: /
     schedule:
-      interval: "weekly"
+      interval: weekly
     cooldown:
-      default-days: 3
+      default-days: 7
     groups:
       actions-deps:
         patterns:
-          - "*"
+          - '*'
 
-  # Maintain dependencies for npm
-  - package-ecosystem: "npm"
-    directory: "/"
-    ignore:
-      - dependency-name: "tailwindcss"
-        update-types: ["version-update:semver-major"]
+  - package-ecosystem: composer
+    directory: /
     schedule:
-      interval: "weekly"
+      interval: weekly
     cooldown:
-      default-days: 3
+      default-days: 7
+    ignore:
+      - dependency-name: filament/*
+        update-types:
+          - version-update:semver-major
     groups:
-      actions-deps:
+      composer-deps:
         patterns:
-          - "*"
+          - '*'
 
-  # Maintain dependencies for Composer
-  - package-ecosystem: "composer"
-    directory: "/"
-    ignore:
-      - dependency-name: "filament/filament"
-        update-types: ["version-update:semver-major"]
+  - package-ecosystem: npm
+    directory: /
     schedule:
-      interval: "weekly"
+      interval: weekly
     cooldown:
-      default-days: 3
+      default-days: 7
+    ignore:
+      - dependency-name: tailwindcss
+        update-types:
+          - version-update:semver-major
     groups:
-      actions-deps:
+      npm-deps:
         patterns:
-          - "*"
+          - '*'

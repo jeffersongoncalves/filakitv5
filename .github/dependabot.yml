@@ -1,6 +1,6 @@
 # Standard Dependabot config (dependabot-std).
 # Weekly, grouped, 7-day cooldown (time to catch a malicious release).
-# Filament majors are ignored so no branch ever gets a cross-major bump: main = Filament 5.
+# Framework majors are ignored so no branch ever gets a cross-major bump: main = Filament 5.
 # Explicit `versions` ranges, not `update-types`: without a composer.lock Dependabot skips update-types.
 
 version: 2

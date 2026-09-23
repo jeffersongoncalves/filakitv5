@@ -88,6 +88,9 @@ jobs:
 
       - name: Run tests (sqlite)
         if: matrix.database == 'sqlite'
+        env:
+          DB_CONNECTION: 'sqlite'
+          DB_DATABASE: ':memory:'
         run: vendor/bin/pest
 
       - name: Run tests (mysql)

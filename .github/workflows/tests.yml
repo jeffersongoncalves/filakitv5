@@ -1,0 +1,116 @@
+name: Tests
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  tests:
+    runs-on: ubuntu-latest
+
+    strategy:
+      fail-fast: false
+      matrix:
+        database: [sqlite, mysql, pgsql]
+
+    name: PHP 8.4 - ${{ matrix.database }}
+
+    services:
+      mysql:
+        image: mysql:8.4
+        env:
+          MYSQL_ALLOW_EMPTY_PASSWORD: 'yes'
+          MYSQL_DATABASE: testing
+        ports:
+          - 3306:3306
+        options: >-
+          --health-cmd="mysqladmin ping"
+          --health-interval=10s
+          --health-timeout=5s
+          --health-retries=5
+
+      postgres:
+        image: postgres:17
+        env:
+          POSTGRES_USER: postgres
+          POSTGRES_PASSWORD: postgres
+          POSTGRES_DB: testing
+        ports:
+          - 5432:5432
+        options: >-
+          --health-cmd=pg_isready
+          --health-interval=10s
+          --health-timeout=5s
+          --health-retries=5
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
+
+      - name: Setup PHP
+        uses: shivammathur/setup-php@f3e473d116dcccaddc5834248c87452386958240 # v2
+        with:
+          php-version: '8.4'
+          extensions: dom, curl, libxml, mbstring, zip, pcntl, pdo, sqlite, pdo_sqlite, pdo_mysql, pdo_pgsql, bcmath, intl, gd, exif, iconv, fileinfo
+          coverage: none
+
+      - name: Install dependencies
+        run: composer install --prefer-dist --no-interaction --no-progress
+
+      - name: Prepare environment
+        run: |
+          cp .env.example .env
+          php artisan key:generate
+
+      - name: Setup pnpm
+        uses: pnpm/action-setup@ea17c68df8912ef543352723c149a84f56e3d413 # v6.1.0
+        with:
+          version: 11
+
+      - name: Setup Node
+        uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020 # v7.0.0
+        with:
+          node-version: 22
+
+      - name: Build assets
+        run: |
+          pnpm install --frozen-lockfile || { echo '::warning::pnpm lockfile out of sync with config, installing without --frozen-lockfile'; pnpm install --no-frozen-lockfile; }
+          pnpm run build
+
+      - name: Run tests (sqlite)
+        if: matrix.database == 'sqlite'
+        env:
+          DB_CONNECTION: 'sqlite'
+          DB_DATABASE: ':memory:'
+        run: vendor/bin/pest
+
+      - name: Run tests (mysql)
+        if: matrix.database == 'mysql'
+        env:
+          DB_CONNECTION: 'mysql'
+          DB_HOST: '127.0.0.1'
+          DB_PORT: '3306'
+          DB_USERNAME: 'root'
+          DB_PASSWORD: ''
+          DB_DATABASE: 'testing'
+        run: vendor/bin/pest
+
+      - name: Run tests (pgsql)
+        if: matrix.database == 'pgsql'
+        env:
+          DB_CONNECTION: 'pgsql'
+          DB_HOST: '127.0.0.1'
+          DB_PORT: '5432'
+          DB_USERNAME: 'postgres'
+          DB_PASSWORD: 'postgres'
+          DB_DATABASE: 'testing'
+        run: vendor/bin/pest

@@ -82,6 +82,9 @@ jobs:
           node-version: 22
 
       - name: Build assets
+        env:
+          pnpm_config_strict_dep_builds: 'false'
+          npm_config_strict_dep_builds: 'false'
         run: |
           pnpm install --frozen-lockfile || { echo '::warning::pnpm lockfile out of sync with config, installing without --frozen-lockfile'; pnpm install --no-frozen-lockfile; }
           pnpm run build
@@ -91,7 +94,7 @@ jobs:
         env:
           DB_CONNECTION: 'sqlite'
           DB_DATABASE: ':memory:'
-        run: vendor/bin/pest
+        run: vendor/bin/pest --no-coverage
 
       - name: Run tests (mysql)
         if: matrix.database == 'mysql'
@@ -102,7 +105,7 @@ jobs:
           DB_USERNAME: 'root'
           DB_PASSWORD: ''
           DB_DATABASE: 'testing'
-        run: vendor/bin/pest
+        run: vendor/bin/pest --no-coverage
 
       - name: Run tests (pgsql)
         if: matrix.database == 'pgsql'
@@ -113,4 +116,4 @@ jobs:
           DB_USERNAME: 'postgres'
           DB_PASSWORD: 'postgres'
           DB_DATABASE: 'testing'
-        run: vendor/bin/pest
+        run: vendor/bin/pest --no-coverage

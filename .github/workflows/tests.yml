@@ -71,6 +71,11 @@ jobs:
           cp .env.example .env
           php artisan key:generate
 
+      - name: Setup pnpm
+        uses: pnpm/action-setup@ea17c68df8912ef543352723c149a84f56e3d413 # v6.1.0
+        with:
+          version: 10
+
       - name: Setup Node
         uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020 # v7.0.0
         with:
@@ -78,8 +83,8 @@ jobs:
 
       - name: Build assets
         run: |
-          npm ci
-          npm run build
+          pnpm install --frozen-lockfile
+          pnpm run build
 
       - name: Run tests (sqlite)
         if: matrix.database == 'sqlite'

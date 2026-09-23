@@ -52,6 +52,16 @@ jobs:
           --health-timeout=5s
           --health-retries=5
 
+      redis:
+        image: redis:7
+        ports:
+          - 6379:6379
+        options: >-
+          --health-cmd="redis-cli ping"
+          --health-interval=10s
+          --health-timeout=5s
+          --health-retries=5
+
     steps:
       - name: Checkout code
         uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
@@ -82,6 +92,9 @@ jobs:
           node-version: 22
 
       - name: Build assets
+        env:
+          pnpm_config_strict_dep_builds: 'false'
+          npm_config_strict_dep_builds: 'false'
         run: |
           pnpm install --frozen-lockfile || { echo '::warning::pnpm lockfile out of sync with config, installing without --frozen-lockfile'; pnpm install --no-frozen-lockfile; }
           pnpm run build
@@ -91,7 +104,7 @@ jobs:
         env:
           DB_CONNECTION: 'sqlite'
           DB_DATABASE: ':memory:'
-        run: vendor/bin/pest
+        run: vendor/bin/pest --no-coverage
 
       - name: Run tests (mysql)
         if: matrix.database == 'mysql'
@@ -102,7 +115,7 @@ jobs:
           DB_USERNAME: 'root'
           DB_PASSWORD: ''
           DB_DATABASE: 'testing'
-        run: vendor/bin/pest
+        run: vendor/bin/pest --no-coverage
 
       - name: Run tests (pgsql)
         if: matrix.database == 'pgsql'
@@ -113,4 +126,4 @@ jobs:
           DB_USERNAME: 'postgres'
           DB_PASSWORD: 'postgres'
           DB_DATABASE: 'testing'
-        run: vendor/bin/pest
+        run: vendor/bin/pest --no-coverage
